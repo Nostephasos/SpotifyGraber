@@ -29,55 +29,81 @@
         private void InitializeComponent()
         {
             this.components = new System.ComponentModel.Container();
-            this.btn_start = new System.Windows.Forms.Button();
-            this.btn_stop = new System.Windows.Forms.Button();
+            System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(w_Main));
             this.loop = new System.Windows.Forms.Timer(this.components);
+            this.notifyIcon_app = new System.Windows.Forms.NotifyIcon(this.components);
+            this.menu = new System.Windows.Forms.ContextMenuStrip(this.components);
+            this.item_Start = new System.Windows.Forms.ToolStripMenuItem();
+            this.item_Stop = new System.Windows.Forms.ToolStripMenuItem();
+            this.item_Exit = new System.Windows.Forms.ToolStripMenuItem();
+            this.menu.SuspendLayout();
             this.SuspendLayout();
-            // 
-            // btn_start
-            // 
-            this.btn_start.Location = new System.Drawing.Point(12, 12);
-            this.btn_start.Name = "btn_start";
-            this.btn_start.Size = new System.Drawing.Size(262, 43);
-            this.btn_start.TabIndex = 0;
-            this.btn_start.Text = "Start";
-            this.btn_start.UseVisualStyleBackColor = true;
-            this.btn_start.Click += new System.EventHandler(this.btn_start_Click);
-            // 
-            // btn_stop
-            // 
-            this.btn_stop.Location = new System.Drawing.Point(12, 61);
-            this.btn_stop.Name = "btn_stop";
-            this.btn_stop.Size = new System.Drawing.Size(262, 43);
-            this.btn_stop.TabIndex = 1;
-            this.btn_stop.Text = "Stop";
-            this.btn_stop.UseVisualStyleBackColor = true;
-            this.btn_stop.Click += new System.EventHandler(this.btn_stop_Click);
             // 
             // loop
             // 
             this.loop.Interval = 5000;
             this.loop.Tick += new System.EventHandler(this.loop_Tick);
             // 
+            // notifyIcon_app
+            // 
+            this.notifyIcon_app.ContextMenuStrip = this.menu;
+            this.notifyIcon_app.Icon = ((System.Drawing.Icon)(resources.GetObject("notifyIcon_app.Icon")));
+            this.notifyIcon_app.Text = "SpotifyGraber";
+            this.notifyIcon_app.Visible = true;
+            // 
+            // menu
+            // 
+            this.menu.Items.AddRange(new System.Windows.Forms.ToolStripItem[] {
+            this.item_Start,
+            this.item_Stop,
+            this.item_Exit});
+            this.menu.Name = "menu";
+            this.menu.Size = new System.Drawing.Size(181, 92);
+            // 
+            // item_Start
+            // 
+            this.item_Start.Name = "item_Start";
+            this.item_Start.Size = new System.Drawing.Size(180, 22);
+            this.item_Start.Text = "Start";
+            this.item_Start.Click += new System.EventHandler(this.item_Start_Click);
+            // 
+            // item_Stop
+            // 
+            this.item_Stop.Enabled = false;
+            this.item_Stop.Name = "item_Stop";
+            this.item_Stop.Size = new System.Drawing.Size(180, 22);
+            this.item_Stop.Text = "Stop";
+            this.item_Stop.Click += new System.EventHandler(this.item_Stop_Click);
+            // 
+            // item_Exit
+            // 
+            this.item_Exit.Name = "item_Exit";
+            this.item_Exit.Size = new System.Drawing.Size(180, 22);
+            this.item_Exit.Text = "Exit";
+            this.item_Exit.Click += new System.EventHandler(this.item_Exit_Click);
+            // 
             // w_Main
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(7F, 15F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(286, 114);
-            this.Controls.Add(this.btn_stop);
-            this.Controls.Add(this.btn_start);
+            this.ClientSize = new System.Drawing.Size(286, 145);
             this.FormBorderStyle = System.Windows.Forms.FormBorderStyle.FixedSingle;
             this.MaximizeBox = false;
             this.Name = "w_Main";
+            this.ShowInTaskbar = false;
             this.Text = "SpotifyGraber";
+            this.WindowState = System.Windows.Forms.FormWindowState.Minimized;
+            this.menu.ResumeLayout(false);
             this.ResumeLayout(false);
 
         }
 
         #endregion
-
-        private Button btn_start;
-        private Button btn_stop;
         private System.Windows.Forms.Timer loop;
+        private NotifyIcon notifyIcon_app;
+        private ContextMenuStrip menu;
+        private ToolStripMenuItem item_Start;
+        private ToolStripMenuItem item_Stop;
+        private ToolStripMenuItem item_Exit;
     }
 }

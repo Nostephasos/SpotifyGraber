@@ -1,4 +1,5 @@
 using System.Diagnostics;
+using System.Windows.Forms.VisualStyles;
 
 namespace SpotifyGraber
 {
@@ -13,15 +14,28 @@ namespace SpotifyGraber
         {
             File.WriteAllText(Path.Combine(Application.StartupPath, "SpotifyGraber.txt"), GetSpotifyTrackInfo());
         }
-
-        private void btn_start_Click(object sender, EventArgs e)
+        private void item_Start_Click(object sender, EventArgs e)
         {
-            loop.Start();
+            if (!loop.Enabled)
+            {
+                loop.Start();
+                item_Start.Checked = true;
+                item_Stop.Enabled = true;
+            }
         }
-
-        private void btn_stop_Click(object sender, EventArgs e)
+        private void item_Stop_Click(object sender, EventArgs e)
         {
-            loop.Stop();
+            if (loop.Enabled) 
+            {
+                loop.Stop(); 
+                item_Start.Checked = false;
+                item_Stop.Enabled = false;
+            }
+        }
+        private void item_Exit_Click(object sender, EventArgs e)
+        {
+            if (loop.Enabled) loop.Stop();
+            Application.Exit();
         }
 
         private string GetSpotifyTrackInfo()
@@ -40,6 +54,5 @@ namespace SpotifyGraber
 
             return proc.MainWindowTitle;
         }
-
     }
 }
